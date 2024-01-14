@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "../components";
 import appwriteService from "../appwrite/config";
-
+import { PostCart } from "../components";
 const Home = () => {
+    const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
@@ -11,6 +12,7 @@ const Home = () => {
                 setPosts(posts.documents);
             }
         });
+        setLoading(false);
     }, []);
 
     if (posts.length === 0) {
@@ -20,7 +22,11 @@ const Home = () => {
                     <div className="flex flex-wrap">
                         <div className="p-2 w-full">
                             <h1 className="text-2xl font-bold hover:text-gray-500">
-                                Login to read posts
+                                {loading ? (
+                                    <p>loading...</p>
+                                ) : (
+                                    "Login to read posts"
+                                )}
                             </h1>
                         </div>
                     </div>

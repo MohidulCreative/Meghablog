@@ -6,7 +6,7 @@ const PostCart = ({$id, title, featuredImage}) => {
     <Link to={`post/${$id}`}>
         <div className="bg-gray-100 w-full rounded-xl p-4">
             <div className="w-full justify-center mb-4">
-                <img className="rounded-xl" src={appwriteService.getFilePreview($id)} alt={title} />
+                <img className="rounded-xl" src={appwriteService.getFilePreview(featuredImage)} alt={title} />
             </div>
             <h2 className="text-xl font-bold">{title}</h2>
         </div>
