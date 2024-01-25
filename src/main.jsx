@@ -72,6 +72,10 @@ const router = createBrowserRouter([
                 path: "/post/:slug",
                 element: <Post />,
             },
+            {
+                path: "/all-posts/:slug",
+                element: <Post />,
+            },
         ],
     },
 ]);

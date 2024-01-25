@@ -4,6 +4,7 @@ import appwriteService from "../appwrite/config";
 import { Button, Container } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
+// import { useAuth } from "appwrite";
 
 export default function Post() {
     const [post, setPost] = useState(null);
@@ -11,8 +12,7 @@ export default function Post() {
     const navigate = useNavigate();
 
     const userData = useSelector((state) => state.authSlice.userData);
-
-    const isAuthor = post && userData ? post.userId === userData.$id : false;
+    // const auth = useAuth();
 
     useEffect(() => {
         if (slug) {
@@ -31,6 +31,9 @@ export default function Post() {
             }
         });
     };
+
+    const isAuthor = post && userData ? post.userId === userData.$id : false;
+    // const isAuthor = auth.user() && post && post.userId === auth.user().$id;
 
     return post ? (
         <div className="py-8">
@@ -58,9 +61,7 @@ export default function Post() {
                 <div className="w-full mb-6">
                     <h1 className="text-2xl font-bold">{post.title}</h1>
                 </div>
-                <div className="browser-css">
-                    {parse(post.content)}
-                    </div>
+                <div className="browser-css">{parse(post.content)}</div>
             </Container>
         </div>
     ) : null;
